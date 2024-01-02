@@ -2,8 +2,8 @@
 
 # Backup your repository before running this script!
 
-# The email you want to change FROM (your work email)
-GIT_EMAIL="your_work_email@example.com"
+# The email you want to change FROM (your other email)
+GIT_EMAIL="wrong_email_to_replace@example.com"
 
 # The name and email you want to change TO (your personal details)
 CORRECT_NAME="Zachary Rowden"
