@@ -1,0 +1,43 @@
+# Ignore audio and video files
+*.mp3
+*.mp4
+*.wav
+
+# Ignore logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore archive files
+*.zip
+*.tar
+*.gz
+
+# Ignore build and temporary files
+*.o
+*.out
+*.tmp
+*.temp
+
+# Ignore IDE and editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore node modules
+node_modules/
+
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# apple script
+*.scpt
