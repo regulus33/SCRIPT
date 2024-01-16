@@ -1,46 +1,28 @@
 #!/bin/bash
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+DIRS="/home/zachary/Desktop;/home/zachary/Downloads"
+# Call your Python script with all passed arguments
+output=$(python3 "$SCRIPT_DIR/python/latest_file.py" "$1" "$DIRS")
 
-# Directories to search
-SEARCH_DIRS=("$HOME/Desktop" "$HOME/Downloads")
+# Check if the command was successful
+if [ $? -eq 0 ]; then
+    # Echo the output
+    echo "$output"
 
-# Function to display help message
-display_help() {
-    echo "Usage: $0 <file_extension> [options]"
-    echo
-    echo "This script finds the most recently updated file with the specified file extension"
-    echo "in the Desktop and Downloads folders and copies the path to the clipboard."
-    echo
-    echo "Options:"
-    echo "  -h, --help    Display this help message and exit."
-    echo
-    echo "Example:"
-    echo "  $0 pdf        Finds the most recent PDF file and copies its path."
-}
-
-# Check for help option
-if [[ "$1" == "-h" || "$1" == "--help" ]]; then
-    display_help
-    exit 0
-fi
-
-# File extension to search for, provided as the first argument
-FILE_EXTENSION="$1"
-
-# Check if file extension was provided
-if [ -z "$FILE_EXTENSION" ]; then
-    echo "Error: No file extension provided."
-    display_help
-    exit 1
-fi
-
-# Finding the most recently updated file and copying to clipboard
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    find "${SEARCH_DIRS[@]}" -type f -name "*.$FILE_EXTENSION" -exec ls -lt {} + | head -n 1 | awk '{print $NF}' | xclip -selection clipboard
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    find "${SEARCH_DIRS[@]}" -type f -name "*.$FILE_EXTENSION" -exec ls -lt {} + | head -n 1 | awk '{print $NF}' | pbcopy
+    # Copy to clipboard
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        echo "$output" | pbcopy
+    else
+        # Linux (requires xclip or xsel)
+        if command -v xclip > /dev/null; then
+            echo "$output" | xclip -selection clipboard
+        elif command -v xsel > /dev/null; then
+            echo "$output" | xsel --clipboard --input
+        else
+            echo "Clipboard utility not found. Please install xclip or xsel."
+        fi
+    fi
 else
-    echo "Unsupported operating system."
-    exit 1
+    echo "Python script did not execute successfully."
 fi
-
-echo "Path copied to clipboard."
