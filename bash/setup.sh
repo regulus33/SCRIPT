@@ -1,5 +1,5 @@
 #!/bin/zsh
-
+# WARNING! ONLY RUN THIS FROM THE BASH SCRIPT DIRECTORY!
 # Make all .sh files in the current directory executable
 chmod +x *.sh
 
