@@ -11,7 +11,6 @@ if arg_length > 1:
 else:
     print("No args passed, directories must be provided i.e /home/zachary/Downloads /home/zachary/Desktop")
 
-
 def mget_mtime(x):
     return os.path.getmtime(x)
 
