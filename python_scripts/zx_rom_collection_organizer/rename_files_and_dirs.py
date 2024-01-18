@@ -2,12 +2,9 @@ import os
 import re
 import shutil
 
-
 # LOCATION = '/python_scripts/zx_rom_collection_organizer/test/games' # A dummy test dir
-
 # CHANGE THIS TO WHEREVER THE VERBOSE ROM DIR NAMES ARE
 LOCATION = '/media/zachary/3F0B-AD70/zxspectrum/snapshots/quicksaves/covertapes'
-
 
 
 def get_files_and_dirs(base_path, dirs):
@@ -73,7 +70,6 @@ def rename_dirs(base_path):
             new_dirname = os.path.join(base_path, letter_dir)
             merge_directories(dir, new_dirname)
             print("Renaming", dir, "to", new_dirname)
-
 
 
 rename_dirs(LOCATION)
