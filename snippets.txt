@@ -1,0 +1,5 @@
+INTELLIJ SEARCH * BETWEEN 2 STRINGS
+
+something_.?cool
+".?" is the key
+
