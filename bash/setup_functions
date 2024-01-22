@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Directory containing executables
+dir="/Users/zacharyrowden/Desktop/SCRIPT/bash"
+
+# File to append the functions to
+profile="$HOME/.zshrc"
+
+for file in "$dir"/*; do
+    if [ -x "$file" ] && [ -f "$file" ]; then
+        # Extract the filename
+        filename=$(basename "$file")
+
+        # Create a function definition
+        echo "function $filename() {" >> "$profile"
+        echo "    $(realpath "$file") \"\$@\"" >> "$profile"
+        echo "}" >> "$profile"
+    fi
+done
+

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Location of the SD card
+SD_CARD_PATH="/Volumes/DR-05X"
+
+# Name of the test file
+TEST_FILE="$SD_CARD_PATH/sd_test_file"
+
+# Size of the test file in bytes (1 GB)
+TEST_FILE_SIZE=$((1024*1024*1024))
+
+echo "Starting SD card speed test..."
+
+# Testing write speed
+echo "Testing write speed..."
+WRITE_START_TIME=$(date +%s)
+dd if=/dev/zero of="$TEST_FILE" bs=2048 count=$(($TEST_FILE_SIZE/2048))
+WRITE_END_TIME=$(date +%s)
+WRITE_DURATION=$((WRITE_END_TIME - WRITE_START_TIME))
+echo "Write test completed in $WRITE_DURATION seconds."
+
+# Testing read speed
+echo "Testing read speed..."
+READ_START_TIME=$(date +%s)
+dd if="$TEST_FILE" of=/dev/null bs=2048
+READ_END_TIME=$(date +%s)
+READ_DURATION=$((READ_END_TIME - READ_START_TIME))
+echo "Read test completed in $READ_DURATION seconds."
+
+# Cleaning up
+echo "Cleaning up..."
+rm "$TEST_FILE"
+echo "Test file removed."
+
+echo "SD card speed test completed."
+

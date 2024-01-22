@@ -1,10 +1,7 @@
 #!/bin/zsh
-# WARNING! ONLY RUN THIS FROM THE BASH SCRIPT DIRECTORY!
-# Make all .sh files in the current directory executable
-chmod +x *.sh
-
+# Adds this script dirs bins to your bash
 # Get the full path of the current directory
-DIR="$(pwd)"
+DIR="/Users/zacharyrowden/Desktop/SCRIPT/bash"
 
 # Check if the directory is already in the PATH
 if ! grep -q "$DIR" ~/.zshrc; then
