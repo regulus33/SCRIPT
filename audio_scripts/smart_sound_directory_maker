@@ -1,0 +1,2 @@
+#!/bin/bash
+python smart_sound_directory_maker.py --indir '/Users/zacharyrowden/Desktop/AUDIO_SCRIPTS/audio_files/in/audio_downloads'  --outdir '/Users/zacharyrowden/Desktop/AUDIO_SCRIPTS/audio_files/out'
