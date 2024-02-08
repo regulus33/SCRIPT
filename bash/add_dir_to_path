@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# check if a dir arg is provided
+if [ -z "$1" ]; then
+	echo "please provide a directory."
+	exit 1
+fi
+
+# validate
+if [! - d "$1"]; then
+	echo "that's not a directory."
+	exit 1
+fi
+
+# get path absolute
+DIR=$(realpath "$1")
+
+# add to .zshrc
+echo "export PATH=\"$PATH:$DIR\"" >> ~/.zshrc
+
+echo "$DIR added to PATH in your .zshrc!"

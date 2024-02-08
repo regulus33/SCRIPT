@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Generate three random numbers between 0 and 255
+red=$(($RANDOM % 256))
+green=$(($RANDOM % 256))
+blue=$(($RANDOM % 256))
+
+# Convert the numbers to hexadecimal and concatenate them
+hex_color=$(printf '#%02x%02x%02x\n' $red $green $blue)
+
+# Output the color
+echo $hex_color
+

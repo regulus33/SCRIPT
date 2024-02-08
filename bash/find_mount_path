@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Check if a drive label was provided
+if [ $# -eq 0 ]; then
+    echo "No drive label provided. Usage: $0 [DRIVE_LABEL]"
+    exit 1
+fi
+
+DRIVE_LABEL="$1"
+
+# Find the mount point using the label
+MOUNT_PATH=$(lsblk -o LABEL,MOUNTPOINT | grep "$DRIVE_LABEL" | awk '{print $2}')
+
+# Check if a mount point was found
+if [ -n "$MOUNT_PATH" ]; then
+    echo "Mount point for '$DRIVE_LABEL': $MOUNT_PATH"
+else
+    echo "No mount point found for '$DRIVE_LABEL'."
+fi
+
